@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>catalogo Imagen</title>
+  <link rel="icon" href="favicon.ico"><link href="style.css" rel="stylesheet"></head>
+  <body
+    x-data="{ page: 'blog-single', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'b eh': darkMode === true}"
+  >
+    <!-- ===== Header Start ===== -->
+    <header
+  class="g s r vd ya cj"
+  :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
+  @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false"
+>
+  <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
+    <div class="vd to/4 tc wf yf">
+      <a href="index.html">
+        <img class="circular" src="images\logogamino.jpeg" alt="Logo Light"  height="120" width="120" />
+        <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
+      </a>
+
+      <!-- Hamburger Toggle BTN -->
+      <button class="po rc" @click="navigationOpen = !navigationOpen">
+        <span class="rc i pf re pd">
+          <span class="du-block h q vd yc">
+            <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
+            <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
+            <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
+          </span>
+          <span class="du-block h q vd yc lf">
+            <span class="rc eh um tg ml jl el h na r ve yc" :class="{ 'sd dl': !navigationOpen }"></span>
+            <span class="rc eh um tg ml jl qr h s pa vd rd" :class="{ 'sd rr': !navigationOpen }"></span>
+          </span>
+        </span>
+      </button>
+      <!-- Hamburger Toggle BTN -->
+    </div>
+
+    <div
+      class="vd wo/4 sd qo f ho oo wf yf"
+      :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }"
+    >
+      <nav>
+        <ul class="tc _o sf yo cg ep">
+          <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
+          <li class="c i" x-data="{ dropdown: false }">
+            <a
+              href="#"
+              class="xl tc wf yf bg"
+              @click.prevent="dropdown = !dropdown"
+              :class="{ 'mk': page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }"
+            >
+             Catalogo
+
+              <svg
+              :class="{ 'wh': dropdown }"
+              class="th mm we fd pf" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+              </svg>
+            </a>
+
+            <!-- Dropdown Start -->
+             <ul class="a" :class="{ 'tc': dropdown }">
+               <li><a href="blog-alfombra.html" class="xl" :class="{ 'mk': page === 'blog-grid' }">Alfombras</a></li>
+              <li><a href="blog-single.html" class="xl" :class="{ 'mk': page === 'blog-single' }">Salas</a></li>
+              <li><a href="blog-asientoscarro.html" class="xl" :class="{ 'mk': page === 'blog-single' }">Asientos de Carro</a></li>
+            </ul>
+            <!-- Dropdown End -->
+          </li>
+        </ul>
+      </nav>
+
+      <div class="tc wf ig pb no">
+        <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
+          <label class="rc ab i">
+            <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="pf vd yc uk h r za ab" />
+            <!-- Icon Sun -->
+            <svg :class="{ 'wn' : page === 'home', 'xh' : page === 'home' && stickyMenu }" class="th om" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.0908 18.6363C10.3549 18.6363 8.69 17.9467 7.46249 16.7192C6.23497 15.4916 5.54537 13.8268 5.54537 12.0908C5.54537 10.3549 6.23497 8.69 7.46249 7.46249C8.69 6.23497 10.3549 5.54537 12.0908 5.54537C13.8268 5.54537 15.4916 6.23497 16.7192 7.46249C17.9467 8.69 18.6363 10.3549 18.6363 12.0908C18.6363 13.8268 17.9467 15.4916 16.7192 16.7192C15.4916 17.9467 13.8268 18.6363 12.0908 18.6363ZM12.0908 16.4545C13.2481 16.4545 14.358 15.9947 15.1764 15.1764C15.9947 14.358 16.4545 13.2481 16.4545 12.0908C16.4545 10.9335 15.9947 9.8236 15.1764 9.00526C14.358 8.18692 13.2481 7.72718 12.0908 7.72718C10.9335 7.72718 9.8236 8.18692 9.00526 9.00526C8.18692 9.8236 7.72718 10.9335 7.72718 12.0908C7.72718 13.2481 8.18692 14.358 9.00526 15.1764C9.8236 15.9947 10.9335 16.4545 12.0908 16.4545ZM10.9999 0.0908203H13.1817V3.36355H10.9999V0.0908203ZM10.9999 20.8181H13.1817V24.0908H10.9999V20.8181ZM2.83446 4.377L4.377 2.83446L6.69082 5.14828L5.14828 6.69082L2.83446 4.37809V4.377ZM17.4908 19.0334L19.0334 17.4908L21.3472 19.8046L19.8046 21.3472L17.4908 19.0334ZM19.8046 2.83337L21.3472 4.377L19.0334 6.69082L17.4908 5.14828L19.8046 2.83446V2.83337ZM5.14828 17.4908L6.69082 19.0334L4.377 21.3472L2.83446 19.8046L5.14828 17.4908ZM24.0908 10.9999V13.1817H20.8181V10.9999H24.0908ZM3.36355 10.9999V13.1817H0.0908203V10.9999H3.36355Z" fill=""/>
+            </svg>
+            <!-- Icon Sun -->
+            <img class="xc nm" src="images/icon-moon.svg" alt="Moon" />
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+    <!-- ===== Header End ===== -->
+
+    <main>
+      <!-- ===== Blog Single Start ===== -->
+      <section class="gj qp gr hj rp hr">
+        <div class="bb ze ki xn 2xl:ud-px-0">
+          <div class="tc sf yo zf kq">
+            <div class="ro">
+              <div class="animate_top rounded-md shadow-solid-13 bg-white dark:bg-blacksection border border-stroke dark:border-strokedark p-7.5 md:p-10">
+
+                <p>
+                  Bienvenido a nuestro sitio web dedicado a la limpieza de alfombras y salas de casa. Ofrecemos una variedad de lavados de alta calidad para satisfacer tus necesidades de limpieza 🧹👌🏻
+                </p>
+
+
+                <div class="wc qf pn dg cb">
+                  <img src="images\salasuciaa.jpg" alt="Blog" />
+                  <img src="images\salalimpia.jpg" alt="Blog" />
+                </div>
+
+                <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb qb">Este es un Antes y Despues 👌🏻</h2>
+                <p>
+                  Estamos encantados de ofrecerte nuestros servicios profesionales de lavado de salas. Sabemos lo importante que es mantener tus muebles limpios y frescos, y estamos aquí para ayudarte a lograrlo.
+                </p>
+
+                <ul class="tc wf bg sb">
+                  <li>
+                    <p class="sj kk wm tb">Buscanos por:</p>
+                  </li>
+                  <li>
+                    <a href="https://www.facebook.com/" class="tc wf xf yd ad rg ml il ih wk">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_47_28)">
+                      <path d="M11.6663 11.25H13.7497L14.583 7.91663H11.6663V6.24996C11.6663 5.39163 11.6663 4.58329 13.333 4.58329H14.583V1.78329C14.3113 1.74746 13.2855 1.66663 12.2022 1.66663C9.93967 1.66663 8.33301 3.04746 8.33301 5.58329V7.91663H5.83301V11.25H8.33301V18.3333H11.6663V11.25Z" fill="white"/>
+                      </g>
+                      <defs>
+                      <clipPath id="clip0_47_28">
+                      <rect width="25" height="25" />
+                      </clipPath>
+                      </defs>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.tiktok.com/es/" class="tc wf xf yd ad rg ml il jh wk" >
+                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/>
+                      <rect width="20" height="20" fill="white"/>
+                      </clipPath>
+                      </defs>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.whatsapp.com/?lang=es_LA" class="tc wf xf yd ad rg ml il kh wk">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                      <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                      <clipPath id="clip0_47_50">
+                      <rect width="20" height="20" fill="white"/>
+                      </clipPath>
+                      </defs>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+                
+              </div>
+            </div>
+
+            <div class="jn/2 so">
+              <div class="animate_top fb">
+                <form action="#">
+                 
+                </form>
+              </div>
+
+              <div class="animate_top fb">
+                <h4 class="tj kk wm qb">Categorias</h4>
+
+                <ul>
+                  <li class="ql vb du-ease-in-out il xl">
+                    <a href="blog-single.html">Salas</a>
+                  </li>
+                  <li class="ql vb du-ease-in-out il xl">
+                    <a href="blog-alfombra.html">Alfombras</a>
+                  </li>
+                  <li class="ql vb du-ease-in-out il xl">
+                    <a href="blog-asientoscarro.html">Asientos de Carro</a>
+                  </li>
+                </ul>
+              </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== Blog Single End ===== -->
+
+      <!-- ===== CTA Start ===== -->
+      <section class="i pg gh ji">
+  <!-- Bg Shape -->
+  <img class="h p q" src="images/shape-16.svg" alt="Bg Shape" />
+
+  <div class="bb ye i z-10 ki xn dr">
+    <div class="tc uf sn tn un gg">
+      <div class="animate_left to/2">
+        <h2 class="fk vj zp pr lk ac">
+           Hacemos Lavados de Salas,Alfrombras y Asientos de cualquier tipo de carro 
+           Contactanos
+           5552524633-5531113007 🙂🫧🧹
+        </h2>
+      </div>
+      <div class="animate_right bf">
+        <a href="#" class="vc ek kk hh rg ol il cm gi hi">
+            Vover al Inicio de la Pagina ⬅️
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    
+
+    <!-- ===== Footer End ===== -->
+
+    <!-- ====== Back To Top Start ===== -->
+    <button
+  class="xc wf xf ie ld vg sr gh tr g sa ta _a"
+  @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+  @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false"
+  :class="{ 'uc' : scrollTop }"
+>
+  <svg class="uh se qd" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
+  </svg>
+</button>
+
+    <!-- ====== Back To Top End ===== -->
+  <script defer src="bundle.js"></script></body>
+</html>
